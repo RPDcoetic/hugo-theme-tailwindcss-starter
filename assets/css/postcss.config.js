@@ -8,14 +8,12 @@ class TailwindExtractor {
     }
 }
 
-const themeDir = __dirname + '/../..';
-
 module.exports = {    
     plugins: [        
         require('postcss-import')({
-            path: [themeDir]
+            path: ['./assets/css']
             }), 
-        require('tailwindcss')(themeDir + '/assets/css/tailwind.js'),   
+        require('tailwindcss')('./assets/css/tailwind.js'),   
         require('@fullhuman/postcss-purgecss')({
             content: ['layouts/**/*.html'],
             extractors: [
@@ -29,5 +27,6 @@ module.exports = {
             grid: true,
             browsers: ['>1%']
         }),
+        require('postcss-reporter'),
     ]
 }
